@@ -1,0 +1,35 @@
+{
+	"name": "diagram-notes",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx sync-diagrams.ts && tsx generate-diagrams.ts && vite",
+		"build": "tsx generate-diagrams.ts && tsc -b && vite build",
+		"generate": "tsx generate-diagrams.ts",
+		"preview": "vite preview",
+		"biome:check": "biome check .",
+		"biome:fix": "biome check --write .",
+		"biome:format": "biome format --write .",
+		"biome:lint": "biome lint --write ."
+	},
+	"dependencies": {
+		"lucide-react": "^1.12.0",
+		"react": "^19.2.5",
+		"react-dom": "^19.2.5",
+		"react-masonry-css": "^1.0.16"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.13",
+		"@tailwindcss/vite": "^4.2.4",
+		"@types/node": "^24.12.2",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.1",
+		"globals": "^17.5.0",
+		"tailwindcss": "^4.2.4",
+		"tsx": "^4.21.0",
+		"typescript": "~6.0.2",
+		"vite": "^8.0.10"
+	}
+}

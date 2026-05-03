@@ -1,0 +1,99 @@
+[
+	{
+		"title": "AI CLI Workflow",
+		"filename": "AI-CLI-Workflow.excalidraw.svg",
+		"path": "diagrams/AI-CLI-Workflow.excalidraw.svg",
+		"categories": ["AI", "LLM"],
+		"id": "e32f8390-2067-4621-905a-500504b1131b",
+		"createdAt": "2026-01-09"
+	},
+	{
+		"title": "Addressbook Architecture",
+		"filename": "Addressbook-architecture.excalidraw.svg",
+		"path": "diagrams/Addressbook-architecture.excalidraw.svg",
+		"categories": ["portfolio"],
+		"id": "c42c8d1a-314c-4752-93f3-a54b10dd108d",
+		"createdAt": "2026-02-21"
+	},
+	{
+		"title": "CI:CD Pipeline",
+		"filename": "CI:CD Pipeline.excalidraw.svg",
+		"path": "diagrams/CI:CD Pipeline.excalidraw.svg",
+		"categories": ["DevOps"],
+		"id": "6251dd36-f180-442d-b525-550acbfc66a2",
+		"createdAt": "2026-01-06"
+	},
+	{
+		"title": "Excalidraw Ecosystem",
+		"filename": "ExcalidrawEcosystem.excalidraw.svg",
+		"path": "diagrams/ExcalidrawEcosystem.excalidraw.svg",
+		"categories": ["app", "excalidraw"],
+		"id": "c37b75d8-eea1-4dc2-a65a-6c424657001f",
+		"createdAt": "2026-01-18"
+	},
+	{
+		"title": "LLM Application Architecture",
+		"filename": "LLMApplicationArchitecture.excalidraw.svg",
+		"path": "diagrams/LLMApplicationArchitecture.excalidraw.svg",
+		"categories": ["LLM", "architecture"],
+		"id": "f4b5ffec-fb85-4f50-9170-f8bf214d057d",
+		"createdAt": "2026-01-17"
+	},
+	{
+		"title": "Map Architecture",
+		"filename": "MapArchitecture.excalidraw.svg",
+		"path": "diagrams/MapArchitecture.excalidraw.svg",
+		"categories": ["architecture"],
+		"id": "a9b4b2e3-f2fb-4e57-b70e-ab99519fe08e",
+		"createdAt": "2026-02-20"
+	},
+	{
+		"title": "Control Chrome",
+		"filename": "control-chrome.excalidraw.svg",
+		"path": "diagrams/control-chrome.excalidraw.svg",
+		"categories": ["tool"],
+		"id": "9f440049-8180-4c82-90c7-d726c9e050d5",
+		"createdAt": "2026-01-26"
+	},
+	{
+		"title": "Git Fork Workflow",
+		"filename": "git-fork-workflow.excalidraw.svg",
+		"path": "diagrams/git-fork-workflow.excalidraw.svg",
+		"categories": ["git", "DevOps"],
+		"id": "b5c7a5d2-6d25-4168-8828-5460c353456e",
+		"createdAt": "2026-01-26"
+	},
+	{
+		"title": "Slides Slidev",
+		"filename": "slides-slidev.excalidraw.svg",
+		"path": "diagrams/slides-slidev.excalidraw.svg",
+		"categories": ["portfolio"],
+		"id": "6ee6314f-699e-4b2b-8d76-ae673596d2c8",
+		"createdAt": "2026-04-20"
+	},
+	{
+		"title": "Stable Context Map",
+		"filename": "stable-context-map.excalidraw.svg",
+		"path": "diagrams/stable-context-map.excalidraw.svg",
+		"categories": ["portfolio"],
+		"id": "23586a1c-2015-463c-9838-837b69ea9eca",
+		"createdAt": "2026-01-12"
+	},
+	{
+		"title": "Stable context Map 2",
+		"filename": "stable-context-map2.excalidraw.svg",
+		"path": "diagrams/stable-context-map2.excalidraw.svg",
+		"categories": ["portfolio"],
+		"id": "3edcb317-8995-40d3-8561-bc84b2e7469f",
+		"createdAt": "2026-01-15"
+	},
+	{
+		"title": "Test File 1",
+		"filename": "testfile1.excalidraw.svg",
+		"path": "diagrams/testfile1.excalidraw.svg",
+		"hidden": true,
+		"categories": ["excalidraw"],
+		"id": "ea653232-1825-4526-acfd-e55e52c71c4a",
+		"createdAt": "2026-01-17"
+	}
+]

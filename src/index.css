@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+	--background: #ffffff;
+	--foreground: #1f2937;
+	--accent: #4f46e5;
+	--border: #cbd5e1;
+}
+
+.dark {
+	--background: #0f172a;
+	--foreground: #e2e8f0;
+	--accent: #818cf8;
+	--border: #94a3b8;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-accent: var(--accent);
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+}
+
+.masonry-grid {
+	display: flex;
+	width: auto;
+}
+
+.masonry-grid_column {
+	background-clip: padding-box;
+}
+
+.masonry-grid_column > * {
+	margin-bottom: 0;
+}

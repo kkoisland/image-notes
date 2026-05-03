@@ -1,0 +1,24 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(pnpm:*)",
+			"Bash(nvm:*)",
+			"Bash(mkdir:*)",
+			"Bash(cp:*)",
+			"Bash(node:*)",
+			"Bash(rm:*)",
+			"Bash(cd:*)",
+			"Bash(ls:*)",
+			"Read",
+			"Write",
+			"Edit",
+			"WebFetch(domain:github.com)",
+			"WebFetch(domain:raw.githubusercontent.com)",
+			"Bash(find:*)",
+			"Bash(git log:*)",
+			"Bash(git status:*)",
+			"Bash(git diff:*)"
+		],
+		"deny": ["EnterPlanMode"]
+	}
+}
