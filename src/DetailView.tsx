@@ -30,11 +30,7 @@ const DetailView = ({ image, onClose, note, onNoteChange }: Props) => {
 				</button>
 			</div>
 			<div className="flex-1 overflow-auto p-4">
-				<img
-					src={image.path}
-					alt={image.title}
-					className="w-full bg-white"
-				/>
+				<img src={image.path} alt={image.title} className="w-full bg-white" />
 			</div>
 			<div className="border-t-2 border-[var(--border)] p-4 flex flex-col gap-3">
 				<textarea
