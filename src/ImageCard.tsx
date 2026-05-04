@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { BadgeCheck } from "lucide-react";
+import { useEffect, useRef } from "react";
 import type { Image } from "./types";
 
 interface Props {
@@ -60,7 +60,7 @@ const ImageCard = ({
 							className={
 								done
 									? "text-[var(--accent)]"
-									: "text-[var(--foreground)]/20 hover:text-[var(--foreground)]/40"
+									: "text-gray-300 hover:text-gray-400"
 							}
 						/>
 					</button>
