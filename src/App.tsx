@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { Download, Moon, Sun, Upload } from "lucide-react";
-import DiagramCard from "./DiagramCard";
+import ImageCard from "./ImageCard";
 import DetailView from "./DetailView";
-import type { Diagram, DiagramNote } from "./types";
+import type { Image, ImageNote } from "./types";
 
 function App() {
-	const [diagrams, setDiagrams] = useState<Diagram[]>([]);
+	const [images, setImages] = useState<Image[]>([]);
 	const [query, setQuery] = useState("");
 	const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
 		new Set(),
@@ -14,15 +14,15 @@ function App() {
 	const [cols, setCols] = useState(3);
 	const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 	const importRef = useRef<HTMLInputElement>(null);
-	const [selectedDiagram, setSelectedDiagram] = useState<Diagram | null>(null);
+	const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 	const [isDark, setIsDark] = useState(() => {
-		const saved = localStorage.getItem("diagram-notes:theme");
+		const saved = localStorage.getItem("image-notes:theme");
 		if (saved !== null) return saved === "dark";
 		return window.matchMedia("(prefers-color-scheme: dark)").matches;
 	});
-	const [notes, setNotes] = useState<Record<string, DiagramNote>>(() => {
+	const [notes, setNotes] = useState<Record<string, ImageNote>>(() => {
 		try {
-			return JSON.parse(localStorage.getItem("diagram-notes:notes") ?? "{}");
+			return JSON.parse(localStorage.getItem("image-notes:notes") ?? "{}");
 		} catch {
 			return {};
 		}
@@ -30,31 +30,31 @@ function App() {
 
 	useEffect(() => {
 		document.documentElement.classList.toggle("dark", isDark);
-		localStorage.setItem("diagram-notes:theme", isDark ? "dark" : "light");
+		localStorage.setItem("image-notes:theme", isDark ? "dark" : "light");
 	}, [isDark]);
 
 	useEffect(() => {
-		fetch(`${import.meta.env.BASE_URL}diagrams.json`)
+		fetch(`${import.meta.env.BASE_URL}images.json`)
 			.then((r) => r.json())
-			.then(setDiagrams);
+			.then(setImages);
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem("diagram-notes:notes", JSON.stringify(notes));
+		localStorage.setItem("image-notes:notes", JSON.stringify(notes));
 	}, [notes]);
 
 	const toggle = () => setIsDark((d) => !d);
 
-	const handleNoteChange = (filename: string, note: DiagramNote) => {
-		setNotes((prev) => ({ ...prev, [filename]: note }));
+	const handleNoteChange = (id: string, note: ImageNote) => {
+		setNotes((prev) => ({ ...prev, [id]: note }));
 	};
 
-	const handleToggleDone = (diagram: Diagram) => {
+	const handleToggleDone = (image: Image) => {
 		setNotes((prev) => ({
 			...prev,
-			[diagram.id]: {
-				memo: prev[diagram.id]?.memo ?? "",
-				done: !(prev[diagram.id]?.done ?? false),
+			[image.id]: {
+				memo: prev[image.id]?.memo ?? "",
+				done: !(prev[image.id]?.done ?? false),
 			},
 		}));
 	};
@@ -67,7 +67,7 @@ function App() {
 			try {
 				const imported = JSON.parse(ev.target?.result as string) as Record<
 					string,
-					DiagramNote
+					ImageNote
 				>;
 				setNotes(imported);
 			} catch {
@@ -91,7 +91,7 @@ function App() {
 	};
 
 	const allCategories = Array.from(
-		new Set(diagrams.flatMap((d) => d.categories ?? [])),
+		new Set(images.flatMap((d) => d.categories ?? [])),
 	).sort();
 
 	const toggleCategory = (cat: string) => {
@@ -103,7 +103,7 @@ function App() {
 		});
 	};
 
-	const filteredDiagrams = diagrams
+	const filteredImages = images
 		.filter((d) => !d.hidden)
 		.filter((d) => d.title.toLowerCase().includes(query.toLowerCase()))
 		.filter(
@@ -145,20 +145,19 @@ function App() {
 	const searchInput = (compact?: boolean) => (
 		<input
 			type="search"
-			placeholder="Search diagrams..."
+			placeholder="Search images..."
 			value={query}
 			onChange={(e) => setQuery(e.target.value)}
 			className={`w-full bg-[var(--background)] text-[var(--foreground)] border border-[var(--border)] rounded-full px-4 focus:outline-none focus:border-[var(--accent)] placeholder:text-[var(--foreground)]/40 ${compact ? "py-1 text-sm" : "py-2"}`}
 		/>
 	);
 
-	const getNote = (diagram: Diagram): DiagramNote => ({
-		memo: notes[diagram.id]?.memo ?? "",
-		done: notes[diagram.id]?.done ?? false,
+	const getNote = (image: Image): ImageNote => ({
+		memo: notes[image.id]?.memo ?? "",
+		done: notes[image.id]?.done ?? false,
 	});
 
-	const getDone = (diagram: Diagram): boolean =>
-		notes[diagram.id]?.done ?? false;
+	const getDone = (image: Image): boolean => notes[image.id]?.done ?? false;
 
 	const colButtons = (
 		<div className="flex items-center gap-1">
@@ -228,7 +227,7 @@ function App() {
 		</div>
 	);
 
-	if (selectedDiagram) {
+	if (selectedImage) {
 		return (
 			<div className="flex h-screen bg-[var(--background)] text-[var(--foreground)]">
 				<div className="w-1/4 h-full overflow-y-auto border-r-2 border-[var(--border)] p-2">
@@ -241,14 +240,14 @@ function App() {
 							className="masonry-grid"
 							columnClassName="masonry-grid_column"
 						>
-							{filteredDiagrams.map((diagram) => (
-								<DiagramCard
-									key={diagram.filename}
-									diagram={diagram}
-									onClick={setSelectedDiagram}
-									isSelected={diagram.filename === selectedDiagram?.filename}
-									done={getDone(diagram)}
-									onToggleDone={() => handleToggleDone(diagram)}
+							{filteredImages.map((image) => (
+								<ImageCard
+									key={image.filename}
+									image={image}
+									onClick={setSelectedImage}
+									isSelected={image.filename === selectedImage?.filename}
+									done={getDone(image)}
+									onToggleDone={() => handleToggleDone(image)}
 								/>
 							))}
 						</Masonry>
@@ -256,10 +255,10 @@ function App() {
 				</div>
 				<div className="w-3/4 h-full">
 					<DetailView
-						diagram={selectedDiagram}
-						onClose={() => setSelectedDiagram(null)}
-						note={getNote(selectedDiagram)}
-						onNoteChange={(note) => handleNoteChange(selectedDiagram.id, note)}
+						image={selectedImage}
+						onClose={() => setSelectedImage(null)}
+						note={getNote(selectedImage)}
+						onNoteChange={(note) => handleNoteChange(selectedImage.id, note)}
 					/>
 				</div>
 			</div>
@@ -277,13 +276,13 @@ function App() {
 					className="masonry-grid"
 					columnClassName="masonry-grid_column"
 				>
-					{filteredDiagrams.map((diagram) => (
-						<DiagramCard
-							key={diagram.filename}
-							diagram={diagram}
-							onClick={setSelectedDiagram}
-							done={getDone(diagram)}
-							onToggleDone={() => handleToggleDone(diagram)}
+					{filteredImages.map((image) => (
+						<ImageCard
+							key={image.filename}
+							image={image}
+							onClick={setSelectedImage}
+							done={getDone(image)}
+							onToggleDone={() => handleToggleDone(image)}
 						/>
 					))}
 				</Masonry>

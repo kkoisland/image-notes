@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 import { BadgeCheck } from "lucide-react";
-import type { Diagram } from "./types";
+import type { Image } from "./types";
 
 interface Props {
-	diagram: Diagram;
-	onClick: (diagram: Diagram) => void;
+	image: Image;
+	onClick: (image: Image) => void;
 	isSelected?: boolean;
 	done?: boolean;
 	onToggleDone?: () => void;
 }
 
-const DiagramCard = ({
-	diagram,
+const ImageCard = ({
+	image,
 	onClick,
 	isSelected,
 	done,
@@ -33,18 +33,18 @@ const DiagramCard = ({
 			<button
 				type="button"
 				className="cursor-pointer w-full"
-				onClick={() => onClick(diagram)}
+				onClick={() => onClick(image)}
 			>
 				<img
-					src={diagram.path}
-					alt={diagram.title}
+					src={image.path}
+					alt={image.title}
 					className="w-full block bg-white"
 				/>
 			</button>
 			<div className="px-3 pt-2 pb-0">
 				<div className="flex items-start justify-between gap-2">
 					<p className="text-lg font-medium text-gray-800 leading-tight">
-						{diagram.title}
+						{image.title}
 					</p>
 					<button
 						type="button"
@@ -65,10 +65,10 @@ const DiagramCard = ({
 						/>
 					</button>
 				</div>
-				<p className="text-sm text-gray-500">{diagram.createdAt}</p>
+				<p className="text-sm text-gray-500">{image.createdAt}</p>
 			</div>
 		</div>
 	);
 };
 
-export default DiagramCard;
+export default ImageCard;

@@ -1,12 +1,12 @@
 {
-	"name": "diagram-notes",
+	"name": "image-notes",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx sync-diagrams.ts && tsx generate-diagrams.ts && vite",
-		"build": "tsx generate-diagrams.ts && tsc -b && vite build",
-		"generate": "tsx generate-diagrams.ts",
+		"dev": "tsx generate-images.ts && vite",
+		"build": "tsx generate-images.ts && tsc -b && vite build",
+		"generate": "tsx generate-images.ts",
 		"preview": "vite preview",
 		"biome:check": "biome check .",
 		"biome:fix": "biome check --write .",
