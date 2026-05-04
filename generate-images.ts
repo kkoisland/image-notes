@@ -5,15 +5,24 @@ import {
 	statSync,
 	writeFileSync,
 } from "node:fs";
-import { join } from "node:path";
+import { basename, extname, join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { execSync } from "node:child_process";
 
-const DIAGRAMS_DIR = "./public/diagrams";
-const OUTPUT = "./public/diagrams.json";
+const IMAGES_DIR = "./public/images";
+const OUTPUT = "./public/images.json";
+
+const SUPPORTED_EXTENSIONS = new Set([
+	".svg",
+	".png",
+	".jpg",
+	".jpeg",
+	".gif",
+	".webp",
+]);
 
 function toTitle(filename: string): string {
-	const base = filename.replace(".excalidraw.svg", "");
+	const base = basename(filename, extname(filename));
 	return base
 		.split("-")
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -26,7 +35,7 @@ function toDate(filePath: string): string {
 	return date.toISOString().split("T")[0];
 }
 
-type Diagram = {
+type Image = {
 	id: string;
 	title: string;
 	filename: string;
@@ -36,39 +45,35 @@ type Diagram = {
 	hidden?: boolean;
 };
 
-const existing: Record<string, Diagram> = {};
+const existing: Record<string, Image> = {};
 if (existsSync(OUTPUT)) {
-	const data = JSON.parse(readFileSync(OUTPUT, "utf-8")) as Diagram[];
+	const data = JSON.parse(readFileSync(OUTPUT, "utf-8")) as Image[];
 	for (const d of data) {
 		existing[d.filename] = d;
 	}
 }
 
-const files = readdirSync(DIAGRAMS_DIR)
-	.filter((f) => f.endsWith(".excalidraw.svg"))
+const files = readdirSync(IMAGES_DIR)
+	.filter((f) => SUPPORTED_EXTENSIONS.has(extname(f).toLowerCase()))
 	.sort();
 
-const diagrams = files.map((filename) => {
-	const filePath = join(DIAGRAMS_DIR, filename);
+const images = files.map((filename) => {
+	const filePath = join(IMAGES_DIR, filename);
 	if (existing[filename]) {
-		const { updatedAt: legacyDate, ...rest } = existing[filename] as Diagram & {
-			updatedAt?: string;
-		};
 		return {
-			...rest,
-			id: rest.id ?? randomUUID(),
-			createdAt: rest.createdAt ?? legacyDate ?? toDate(filePath),
+			...existing[filename],
+			id: existing[filename].id ?? randomUUID(),
 		};
 	}
 	return {
 		id: randomUUID(),
 		title: toTitle(filename),
 		filename,
-		path: `diagrams/${filename}`,
+		path: `images/${filename}`,
 		createdAt: toDate(filePath),
 	};
 });
 
-writeFileSync(OUTPUT, `${JSON.stringify(diagrams, null, "\t")}\n`);
+writeFileSync(OUTPUT, `${JSON.stringify(images, null, "\t")}\n`);
 execSync(`pnpm exec biome format --write ${OUTPUT}`, { stdio: "ignore" });
-console.log(`Generated ${diagrams.length} diagrams → ${OUTPUT}`);
+console.log(`Generated ${images.length} images → ${OUTPUT}`);

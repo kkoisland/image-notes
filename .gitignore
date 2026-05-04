@@ -14,6 +14,9 @@ dist-ssr
 
 .claude/settings.local.json
 
+public/images/*
+!public/images/.gitkeep
+
 # Editor directories and files
 !.vscode/extensions.json
 .idea

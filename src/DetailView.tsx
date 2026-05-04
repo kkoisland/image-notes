@@ -1,23 +1,23 @@
 import { X } from "lucide-react";
-import type { Diagram, DiagramNote } from "./types";
+import type { Image, ImageNote } from "./types";
 
 interface Props {
-	diagram: Diagram;
+	image: Image;
 	onClose: () => void;
-	note: DiagramNote;
-	onNoteChange: (note: DiagramNote) => void;
+	note: ImageNote;
+	onNoteChange: (note: ImageNote) => void;
 }
 
-const DetailView = ({ diagram, onClose, note, onNoteChange }: Props) => {
+const DetailView = ({ image, onClose, note, onNoteChange }: Props) => {
 	return (
 		<div className="h-full flex flex-col bg-[var(--background)]">
 			<div className="flex justify-between items-center p-4 border-b-2 border-[var(--border)]">
 				<div>
 					<p className="text-lg font-medium text-[var(--foreground)]">
-						{diagram.title}
+						{image.title}
 					</p>
 					<p className="text-sm text-[var(--foreground)]/60">
-						{diagram.createdAt}
+						{image.createdAt}
 					</p>
 				</div>
 				<button
@@ -31,8 +31,8 @@ const DetailView = ({ diagram, onClose, note, onNoteChange }: Props) => {
 			</div>
 			<div className="flex-1 overflow-auto p-4">
 				<img
-					src={diagram.path}
-					alt={diagram.title}
+					src={image.path}
+					alt={image.title}
 					className="w-full bg-white"
 				/>
 			</div>

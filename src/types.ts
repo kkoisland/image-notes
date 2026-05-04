@@ -1,4 +1,4 @@
-export interface Diagram {
+export interface Image {
 	id: string;
 	title: string;
 	filename: string;
@@ -8,7 +8,7 @@ export interface Diagram {
 	hidden?: boolean;
 }
 
-export interface DiagramNote {
+export interface ImageNote {
 	memo: string;
 	done: boolean;
 }
