@@ -21,6 +21,8 @@ Built for personal use to organize my own image collection — generalized as a 
 - 1–5 column layout toggle
 - Dark mode with system preference detection and localStorage persistence
 
+![screenshot](docs/screenshot.png)
+
 ## Project Structure
 
 ```
