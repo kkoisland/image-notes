@@ -7,7 +7,7 @@ Built for personal use to organize my own image collection — generalized as a 
 ## Resources
 
 🚀 **Live**: https://kkoisland.github.io/image-notes/c5b84e1f034aca86/
-📝 **Slides**: (coming soon)
+📝 **Slides**: https://www.kkoisland.com/slides-slidev/slides/image-notes/
 
 ## Features
 
