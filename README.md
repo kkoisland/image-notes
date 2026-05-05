@@ -50,7 +50,7 @@ Memos and done flags are stored in localStorage and are local to your browser. U
 
 ### URL token (semi-private)
 
-The live URL includes a random token (e.g., `kkoisland.github.io/image-notes/c5b84e1f034aca86/`) to make it non-discoverable without the exact URL. To set your own token, update `base` in `vite.config.ts`. You can generate one with:
+The live URL includes a random token (e.g., `kkoisland.github.io/image-notes/c5b84e1f034aca86/`) to make it non-discoverable without the exact URL. To set your own token, generate one and replace `c5b84e1f034aca86` in `vite.config.ts`, `.github/workflows/deploy.yml`, and your Live URL:
 
 ```bash
 openssl rand -hex 8
